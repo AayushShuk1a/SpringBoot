@@ -2,9 +2,11 @@ package com.restapi.Rest.API.rest;
 
 
 import com.restapi.Rest.API.entity.Student;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.annotation.PostConstruct;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +15,34 @@ import java.util.List;
 @RequestMapping("/api")
 public class StudentRestController {
 
+    public List<Student>theStudents;
+
+    @PostConstruct
+    public void LoadData(){
+        theStudents=new ArrayList<>();
+        theStudents.add(new Student("Poornima","Mehta"));
+        theStudents.add(new Student("Shika","Gupta"));
+        theStudents.add(new Student("Shivam","dube"));
+    }
 
     @GetMapping("/students")
     public List<Student> getStudent(){
-        List<Student>students=new ArrayList<>();
-        students.add(new Student("Poornima","Mehta"));
-        students.add(new Student("Shika","Gupta"));
-        students.add(new Student("Shivam","dube"));
-        return students;
-
+        return theStudents;
     }
+
+    @GetMapping("/student/{studentID}")
+    public Student getStudentByID(@PathVariable Integer studentID)
+    {
+        if(studentID>=theStudents.size()||studentID<0)
+        {
+            throw new StudentNotFoundException("Student id is not found - "+studentID);
+        }
+        return theStudents.get(studentID);
+    }
+
+
+
 }
+
+
+
