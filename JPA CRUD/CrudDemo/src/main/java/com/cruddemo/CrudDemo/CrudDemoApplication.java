@@ -26,8 +26,15 @@ public class CrudDemoApplication {
 			//getStudent(studentDao);
 			//getAllStudent(studentDao);
 			//getStudentByLastName(studentDao);
-			updateStudent(studentDao);
+			//updateStudent(studentDao);
+			deleteStudent(studentDao);
 		};
+	}
+
+	private void deleteStudent(StudentDao studentDao) {
+
+
+		studentDao.DeleteStudent(2);
 	}
 
 	private void updateStudent(StudentDao studentDao) {
