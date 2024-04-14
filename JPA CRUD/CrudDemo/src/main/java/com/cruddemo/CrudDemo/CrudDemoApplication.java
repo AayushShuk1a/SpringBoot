@@ -25,8 +25,18 @@ public class CrudDemoApplication {
 			//createMultipleStudents(studentDao);
 			//getStudent(studentDao);
 			//getAllStudent(studentDao);
-			getStudentByLastName(studentDao);
+			//getStudentByLastName(studentDao);
+			updateStudent(studentDao);
 		};
+	}
+
+	private void updateStudent(StudentDao studentDao) {
+
+		Student student=studentDao.findByID(6);
+		student.setLastName("teja");
+
+		studentDao.Update(student);
+		System.out.println(student);
 	}
 
 	private void getStudentByLastName(StudentDao studentDao) {
