@@ -3,9 +3,7 @@ package com.employeerestapi.EmployeeRestAPI.rest;
 import com.employeerestapi.EmployeeRestAPI.entity.Employee;
 import com.employeerestapi.EmployeeRestAPI.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +24,36 @@ public class EmployeeRestController {
        return employeeService.findAll();
     }
 
+    @GetMapping("/employees/{employeeID}")
+    public Employee getEmployeeById(@PathVariable int employeeID){
+       Employee theEmployee=employeeService.findById(employeeID);
+
+       if(theEmployee==null){
+           throw new RuntimeException("Employee Not Found");
+       }
+       return theEmployee;
+    }
+
+    @PostMapping("/employee")
+    public Employee addEmployee(@RequestBody Employee employee){
+       employee.setId(0);
+       Employee theEmployee=employeeService.save(employee);
+       return theEmployee;
+    }
+
+    @PutMapping("/employee")
+    public Employee UpdateEmployee(@RequestBody Employee employee){
+       Employee theEmployee=employeeService.save(employee);
+       return theEmployee;
+    }
+
+
+    @DeleteMapping("/employee/{employeeID}")
+    public void DeleteEmployee(@PathVariable int employeeID){
+       employeeService.Delete(employeeID);
+    }
+
 }
+
+
+
