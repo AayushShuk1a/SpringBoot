@@ -43,6 +43,8 @@
     Course Code:<input type="text" th:field="*{courseCode}"/>
     <span th:if="${#fields.hasErrors('courseCode')}" th:errors="*{courseCode}" class="error"/>
 
+    <br><br>
+
     <input type="submit" value="Submit"/>
 
 </form>
