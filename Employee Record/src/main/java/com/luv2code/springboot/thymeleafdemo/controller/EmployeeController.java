@@ -5,10 +5,7 @@ import com.luv2code.springboot.thymeleafdemo.service.EmployeeService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,6 +37,15 @@ public class EmployeeController {
 
 
 		return "employee/list-employees";
+	}
+
+
+	@GetMapping("/showformtoupdate")
+	public String showFormUpdate(@RequestParam("employeeId") int theID,Model theModel){
+		Employee employee=employeeService.findById(theID);
+
+		theModel.addAttribute("employee",employee);
+		return "/employee/employee-form";
 	}
 
 
