@@ -49,7 +49,9 @@ public class demoSecurityConfig {
                         .loginProcessingUrl("/authenticateUser")
                         .permitAll()
                 )
-                .logout(logout->logout.permitAll());
+                .logout(logout->logout.permitAll())
+                .exceptionHandling(configurer->configurer.accessDeniedPage("/accessdenied"));
+
 
         return http.build();
     }

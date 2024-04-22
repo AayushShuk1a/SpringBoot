@@ -16,19 +16,17 @@
     Username : <span sec:authentication="principal.username"></span>
     <br><br/>
     Roles : <span sec:authentication="principal.authorities"/>
-    <hr/>
 
 </p>
 
 <hr/>
-<p>
+<p sec:authorize="hasRole('MANAGER')">
     <a th:href="@{/leaders}">Leadership Meeting</a>
     (only for Manager peeps).
 </p>
 
-<hr/>
 
-<p>
+<p sec:authorize="hasRole('ADMIN')">
     <a th:href="@{/systems}">IT Systems Meeting</a>
     (only for Admin peeps).
 </p>

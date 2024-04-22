@@ -12,5 +12,9 @@ public class formController {
     }
 
 
+    @GetMapping("/accessdenied")
+    public String accessDenied(){
+        return "access-denied";
+    }
     
 }
