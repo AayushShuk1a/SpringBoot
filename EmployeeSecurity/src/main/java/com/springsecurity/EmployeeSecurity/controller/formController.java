@@ -10,4 +10,7 @@ public class formController {
     public String LoginForm(){
         return "fancy-login";
     }
+
+
+    
 }

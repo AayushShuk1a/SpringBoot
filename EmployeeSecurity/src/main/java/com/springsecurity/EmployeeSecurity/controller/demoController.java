@@ -12,4 +12,14 @@ public class demoController {
         return "Home";
     }
 
+    @GetMapping("/leaders")
+    public String LeadersPage(){
+        return "leaders";
+    }
+
+    @GetMapping("/systems")
+    public String SystemsPage(){
+        return "systems";
+    }
+
 }
