@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <title>EmployeeRecord</title>
@@ -9,6 +9,22 @@
 <h2>Welcome to Employee Record</h2>
 <hr>
 <h3>We devlop daily</h3>
+
+<hr/>
+
+<p>
+    Username : <span sec:authentication="principal.username"></span>
+    <br><br/>
+    Roles : <span sec:authentication="principal.authorities"/>
+    <hr/>
+
+</p>
+
+<form action="#" th:action="@{/logout}" method="post">
+
+    <input type="submit" value="Logout"/>
+
+</form>
 
 </body>
 </html>
