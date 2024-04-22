@@ -8,6 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class formController {
     @GetMapping("/showLoginPage")
     public String LoginForm(){
-        return "plain-form";
+        return "fancy-login";
     }
 }
