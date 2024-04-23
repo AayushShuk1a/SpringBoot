@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class MappingsHibernateApplication {
 
@@ -21,10 +23,29 @@ public class MappingsHibernateApplication {
 			//createInstructor(appDao);
 			//findByID(appDao);
 //			deleteInstructor(appDao);
-			addCoursesToInstructor(appDao);
+			//addCoursesToInstructor(appDao);
+			//GetCoursesForInstructor(appDao);  this is lazy error
+			GetCoursesForInstructorByID(appDao);  //method for solving lazy error
 
 		};
 	}
+
+	private void GetCoursesForInstructorByID(AppDao appDao) {
+		Instructor instructor=appDao.findByID(1);
+		System.out.println("Instructor : "+instructor);
+
+		List<Course>courses=appDao.findCoursesByInstructorId(1);
+		instructor.setCourses(courses);
+
+		System.out.println("Courses : "+ instructor.getCourses());
+	}
+
+	private void GetCoursesForInstructor(AppDao appDao) {
+		int id=1;
+		Instructor instructor=appDao.findByID(id);
+		System.out.println(instructor.getCourses());
+	}
+
 
 	private void addCoursesToInstructor(AppDao appDao) {
 		Instructor instructor=new Instructor("Romario","Shepherd","sheperd@gmail.com");
