@@ -19,6 +19,10 @@ public class InstructorDetails {
     @Column(name = "hobby")
     private String hobby;
 
+    public InstructorDetails(){
+
+    }
+
     public InstructorDetails(String youtubeChannel, String hobby) {
         this.youtubeChannel = youtubeChannel;
         this.hobby = hobby;

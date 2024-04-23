@@ -25,6 +25,10 @@ public class Instructor {
     @JoinColumn(name = "instructor_detail_id")
     private InstructorDetails instructorDetails;
 
+    public Instructor(){
+
+    }
+
 
     public Instructor(String firstName, String lastName, String email) {
         this.firstName = firstName;

@@ -18,8 +18,23 @@ public class MappingsHibernateApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(AppDao appDao){
 		return runner->{
-		createInstructor(appDao);
+			//createInstructor(appDao);
+			//findByID(appDao);
+			deleteInstructor(appDao);
 		};
+	}
+
+	private void findByID(AppDao appDao) {
+
+		int id=1;
+		Instructor instructor=appDao.findByID(id);
+		System.out.println("Instructor : "+ instructor);
+
+	}
+
+	private void deleteInstructor(AppDao appDao) {
+		int id=1;
+		appDao.DeleteById(id);
 	}
 
 	private void createInstructor(AppDao appDao) {
