@@ -4,7 +4,7 @@ package com.cruddemo.MappingsHibernate.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="instructor_details")
+@Table(name="instructor_detail")
 public class InstructorDetails {
 
 
