@@ -16,6 +16,12 @@ public interface AppDao {
 
     public Instructor findInstructorAllDetails(int id);
 
+    void updateInstructor(Instructor instructor);
+
+    Course findCourseById(int id);
+
+    void updateCourse(Course course);
+
 }
 
 

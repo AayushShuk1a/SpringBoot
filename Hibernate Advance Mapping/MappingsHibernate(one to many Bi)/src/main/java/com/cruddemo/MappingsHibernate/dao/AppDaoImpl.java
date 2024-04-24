@@ -3,6 +3,7 @@ package com.cruddemo.MappingsHibernate.dao;
 import com.cruddemo.MappingsHibernate.entity.Course;
 import com.cruddemo.MappingsHibernate.entity.Instructor;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Table;
 import jakarta.persistence.TypedQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -64,5 +65,24 @@ public class AppDaoImpl implements AppDao{
         Instructor instructor=query.getSingleResult();
 
         return instructor;
+    }
+
+    @Override
+    @Transactional
+    public void updateInstructor(Instructor instructor) {
+        entityManager.merge(instructor);
+    }
+
+    @Override
+    public Course findCourseById(int id) {
+
+        Course theCourse=entityManager.find(Course.class,id);
+        return theCourse;
+    }
+
+    @Override
+    @Transactional
+    public void updateCourse(Course course) {
+        entityManager.merge(course);
     }
 }

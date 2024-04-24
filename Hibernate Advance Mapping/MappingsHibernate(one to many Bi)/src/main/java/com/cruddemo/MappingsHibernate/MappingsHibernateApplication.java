@@ -26,10 +26,25 @@ public class MappingsHibernateApplication {
 			//addCoursesToInstructor(appDao);
 			//GetCoursesForInstructor(appDao);  this is lazy error
 			//GetCoursesForInstructorByID(appDao);  //method for solving lazy error
-			GetInstructorDetailsAndCourses(appDao);
+			//GetInstructorDetailsAndCourses(appDao);
+			updateInstructor(appDao);
+			updateCourse(appDao);
 
         };
 	}
+
+	private void updateInstructor(AppDao appDao){
+		Instructor instructor=appDao.findByID(1);
+		instructor.setEmail("romarioShepherd@email.com");
+		appDao.updateInstructor(instructor);
+	}
+
+	private void updateCourse(AppDao appDao) {
+		Course course=appDao.findCourseById(10);
+		course.setTitle("Boxing masterclass Bootcamp");
+		appDao.updateCourse(course);
+	}
+
 
 	private void GetInstructorDetailsAndCourses(AppDao appDao) {
 		int id=1;
