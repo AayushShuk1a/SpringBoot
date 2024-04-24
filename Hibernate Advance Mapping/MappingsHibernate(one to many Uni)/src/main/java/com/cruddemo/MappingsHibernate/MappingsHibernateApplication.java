@@ -24,9 +24,14 @@ public class MappingsHibernateApplication {
 		return runner->{
 
 			//createCourseAndReview(appDao);
-			getCourseAndReviewById(appDao);
+			//getCourseAndReviewById(appDao);
+			deleteCourseAndReviewById(appDao);
 
         };
+	}
+
+	private void deleteCourseAndReviewById(AppDao appDao) {
+		appDao.DeleteCourseById(10);
 	}
 
 	private void getCourseAndReviewById(AppDao appDao) {
