@@ -14,6 +14,8 @@ public interface AppDao {
 
     public List<Course> findCoursesByInstructorId(int id);
 
+    public Instructor findInstructorAllDetails(int id);
+
 }
 
 

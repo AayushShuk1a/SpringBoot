@@ -25,9 +25,17 @@ public class MappingsHibernateApplication {
 //			deleteInstructor(appDao);
 			//addCoursesToInstructor(appDao);
 			//GetCoursesForInstructor(appDao);  this is lazy error
-			GetCoursesForInstructorByID(appDao);  //method for solving lazy error
+			//GetCoursesForInstructorByID(appDao);  //method for solving lazy error
+			GetInstructorDetailsAndCourses(appDao);
 
-		};
+        };
+	}
+
+	private void GetInstructorDetailsAndCourses(AppDao appDao) {
+		int id=1;
+		Instructor instructor=appDao.findInstructorAllDetails(id);
+		System.out.println("Instructor Details : "+instructor);
+		System.out.println("Course Details : "+instructor.getCourses());
 	}
 
 	private void GetCoursesForInstructorByID(AppDao appDao) {
