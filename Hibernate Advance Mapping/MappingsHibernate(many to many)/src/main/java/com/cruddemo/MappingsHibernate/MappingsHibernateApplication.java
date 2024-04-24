@@ -20,9 +20,26 @@ public class MappingsHibernateApplication {
 		return runner->{
 
 			//createCourseAndStudent(appDao);
-			findCourseFromStudentId(appDao);
+			//findCourseFromStudentId(appDao);
+			//addMoreCourses(appDao);
+			DeleteStudent(appDao);
 
         };
+	}
+
+	private void DeleteStudent(AppDao appDao) {
+		int id=3;
+		appDao.DeleteStudentById(id);
+	}
+
+
+	private void addMoreCourses(AppDao appDao) {
+		Student theStudent=appDao.findCourseByStudentId(4);
+		Course tempCourse1=new Course("The art of Silence");
+		Course tempCourse2=new Course("The art of hitting a six");
+		theStudent.AddCourse(tempCourse1);
+		theStudent.AddCourse(tempCourse2);
+		appDao.UpdateStudent(theStudent);
 	}
 
 	private void findCourseFromStudentId(AppDao appDao) {

@@ -3,6 +3,7 @@ package com.cruddemo.MappingsHibernate.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -89,5 +90,14 @@ public class Student {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public void AddCourse(Course course)
+    {
+        if(courses==null){
+            courses=new ArrayList<>();
+        }
+
+        courses.add(course);
     }
 }
