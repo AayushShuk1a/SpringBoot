@@ -2,8 +2,8 @@ package com.DemoAop.AOP.Demo.Aspect;
 
 
 import com.DemoAop.AOP.Demo.dao.Account;
-import com.DemoAop.AOP.Demo.dao.AccountDao;
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
@@ -15,6 +15,39 @@ import java.util.List;
 @Component
 @Order(1)
 public class MyDemoLogginAspect {
+
+    @Around("execution(* com.DemoAop.AOP.Demo.service.FortuneService.getFortune(..))")
+    public Object AroundAdvice(ProceedingJoinPoint proceedingJoinPoint)throws Throwable{
+        String method=proceedingJoinPoint.getSignature().toShortString();
+        System.out.println("\n=====>>> Executing @Around on method: " + method);
+
+        // get begin timestamp
+        long begin = System.currentTimeMillis();
+
+        Object result=null;
+        try{
+            result=proceedingJoinPoint.proceed();
+        }catch (Exception e){
+            System.out.println(getClass()+" "+e.getMessage());
+
+            throw e;
+        }
+
+
+        long end = System.currentTimeMillis();
+
+        // compute duration and display it
+        long duration = end - begin;
+        System.out.println("\n=====> Duration: " + duration / 1000.0 + " seconds");
+
+        return result;
+    }
+
+
+    @After("execution(* com.DemoAop.AOP.Demo.dao.AccountDao.findAccount(..))")
+    public void AfterAdviceDemo(){
+        System.out.println(getClass()+" After Advice ran successfully");
+    }
 
 
     @AfterThrowing(pointcut = "execution(* com.DemoAop.AOP.Demo.dao.AccountDao.findAccount(..))",throwing = "theExec")

@@ -2,6 +2,7 @@ package com.DemoAop.AOP.Demo;
 
 import com.DemoAop.AOP.Demo.dao.Account;
 import com.DemoAop.AOP.Demo.dao.AccountDao;
+import com.DemoAop.AOP.Demo.service.FortuneService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,14 +19,34 @@ public class AopDemoApplication {
 	}
 
 	@Bean
-	public CommandLineRunner commandLineRunner(AccountDao accountDao){
+	public CommandLineRunner commandLineRunner(AccountDao accountDao, FortuneService fortuneService){
 		return runner->{
 
 			//demoBeforeAdvice(accountDao);
 			//findAllAccount(accountDao);
-			demoAfterThrowing(accountDao);
+			//demoAfterThrowing(accountDao);
+			//DemoAroundAdviceFortune(fortuneService);
+			AroundAdviceExceptionFortune(fortuneService);
 
 		};
+
+
+	}
+
+	private void AroundAdviceExceptionFortune(FortuneService fortuneService) {
+
+		try{
+			boolean tripWire=true;
+			System.out.println(fortuneService.getFortune(tripWire));
+
+		}
+		catch (Exception e){
+			System.out.println(getClass()+" "+e);
+		}
+	}
+
+	private void DemoAroundAdviceFortune(FortuneService fortuneService) {
+		System.out.println(fortuneService.getFortune());
 	}
 
 	private void demoAfterThrowing(AccountDao accountDao) {
@@ -35,7 +56,7 @@ public class AopDemoApplication {
 			accountDao.findAccount(true);
 		}
 		catch (Exception exec){
-			System.out.println(exec);
+			System.out.println(exec+" "+getClass());
 		}
 	}
 
