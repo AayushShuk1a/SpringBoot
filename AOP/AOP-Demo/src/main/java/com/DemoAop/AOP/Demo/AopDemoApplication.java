@@ -24,8 +24,8 @@ public class AopDemoApplication {
 
 	private void demoBeforeAdvice(AccountDao accountDao) {
 		accountDao.addAccount();
-		accountDao.getName();
-		accountDao.setName("Zero Two");
+		//accountDao.getName();
+		//accountDao.setName("Zero Two");
 	}
 
 
