@@ -7,6 +7,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -21,9 +22,21 @@ public class AopDemoApplication {
 		return runner->{
 
 			//demoBeforeAdvice(accountDao);
-			findAllAccount(accountDao);
+			//findAllAccount(accountDao);
+			demoAfterThrowing(accountDao);
 
 		};
+	}
+
+	private void demoAfterThrowing(AccountDao accountDao) {
+		List<Account>accounts=null;
+		try {
+			boolean tripwire=true;
+			accountDao.findAccount(true);
+		}
+		catch (Exception exec){
+			System.out.println(exec);
+		}
 	}
 
 	private void findAllAccount(AccountDao accountDao) {
