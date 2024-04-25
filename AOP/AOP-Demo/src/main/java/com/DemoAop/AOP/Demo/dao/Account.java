@@ -6,6 +6,14 @@ public class Account {
 
     private int age;
 
+    public Account(){
+    }
+
+    public Account(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
     public int getAge() {
         return age;
     }
@@ -20,5 +28,13 @@ public class Account {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }

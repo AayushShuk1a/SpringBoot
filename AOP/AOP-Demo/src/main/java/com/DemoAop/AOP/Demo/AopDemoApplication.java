@@ -1,10 +1,13 @@
 package com.DemoAop.AOP.Demo;
 
+import com.DemoAop.AOP.Demo.dao.Account;
 import com.DemoAop.AOP.Demo.dao.AccountDao;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.util.List;
 
 @SpringBootApplication
 public class AopDemoApplication {
@@ -17,13 +20,23 @@ public class AopDemoApplication {
 	public CommandLineRunner commandLineRunner(AccountDao accountDao){
 		return runner->{
 
-			demoBeforeAdvice(accountDao);
+			//demoBeforeAdvice(accountDao);
+			findAllAccount(accountDao);
 
 		};
 	}
 
+	private void findAllAccount(AccountDao accountDao) {
+		List<Account>accounts=accountDao.findAccount();
+		System.out.println(accounts);
+	}
+
+
 	private void demoBeforeAdvice(AccountDao accountDao) {
-		accountDao.addAccount();
+		Account account=new Account();
+		account.setAge(12);
+		account.setName("Tommy");
+		accountDao.addAccount(account);
 		//accountDao.getName();
 		//accountDao.setName("Zero Two");
 	}
